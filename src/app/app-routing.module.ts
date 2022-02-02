@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+//quando a URI categories for acionada o módulo será carregado com todos os componentes que nele estão declarados
+const routes: Routes = [
+  { path: 'categories', loadChildren: './pages/categories/categories.module#CategoriesModule' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

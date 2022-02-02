@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CatecoryListComponent } from './catecory-list/catecory-list.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
+
+//site.com/categories => list (master) => CatecoryListComponent
+//site.com/categories/new => form (detail) => CategoryFormComponent
+//site.com/categories/:id/edit => form (detail) => CategoryFormComponent
+const routes: Routes = [
+  { path: '', component: CatecoryListComponent },
+  { path: 'new', component: CategoryFormComponent },
+  { path: ':id/edit', component: CategoryFormComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class CategoriesRoutingModule { }
