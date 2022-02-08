@@ -2,7 +2,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"> <a routerLink="/">Home</a> </li>
     <li class="breadcrumb-item"> <a routerLink="/categories">Categorias</a> </li>
-    <li class="breadcrumb-item active">Formulário de categoria</li>
+    <li class="breadcrumb-item active">{{ pageTitle }}</li>
   </ol>
 </nav>
 
@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<form [formGroup]="categoryForm"><!-- a dependência ReactiveFormsModule necessita de um formGroup -->
+<form [formGroup]="categoryForm" (submit)="submitForm()"><!-- a dependência ReactiveFormsModule necessita de um formGroup -->
 
   <div class="card">
     <div class="card-header">
@@ -26,18 +26,23 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="name">Nome</label>
-          <input type="text" class="form-control" id="name">
+          <input type="text" class="form-control" id="name" formControlName="name">
+
+          <div  class="text-danger" *ngIf="categoryForm.get('name').invalid && categoryForm.get('name').touched">
+            <div *ngIf="categoryForm.get('name').errors.required">campo obrigatório</div>
+            <div *ngIf="categoryForm.get('name').errors.minlength">deve ter no mínimo 2 caracteres</div>
+          </div>
         </div>
 
         <div class="form-group col-md-8">
           <label for="description">Descrição</label>
-          <input type="text" class="form-control" id="description">
+          <input type="text" class="form-control" id="description" formControlName="description">
         </div>
 
       </div>
     </div>
   </div>
-
-  <button type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar</button>
+  <!-- o botão será disabled quando 'submittingForm == true' ou 'categoryForm.invalid == true, ou seja campos do form vazios' -->
+  <button [disabled]="submittingForm || categoryForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar</button>
 
 </form>
