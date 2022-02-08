@@ -57,13 +57,20 @@ export class EntryService {
   }
 
   private jsonDataToEntries(jsonData: any[]): Entry[]{
+    // console.log(jsonData[0] as Entry);//faz um cast porém o objeto retornado é do tipo Object
     const entries: Entry[] = [];
-    jsonData.forEach(element => entries.push(element as Entry));
+
+    jsonData.forEach(element => {
+      const entry: Entry = Object.assign(new Entry(), element);//faz um cast e retorna uma instância do objeto
+      entries.push(entry);
+    });
+
     return entries;
   }
 
   private jsonDataToEntry(jsonData: any): Entry{
-    return jsonData as Entry;
+    const entry: Entry = Object.assign(new Entry(), jsonData);
+    return entry;
   }
 
   private handleError(error: any): Observable<any>{

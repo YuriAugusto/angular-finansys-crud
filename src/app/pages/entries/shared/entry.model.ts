@@ -38,12 +38,12 @@ export class Entry {
   ){ }
 
 
-  static types = {
+  static types = {//propriedade static
     expense: 'Despesa',
     renevue: 'Receita'
   };
 
-  get paidText(): string {
+  get paidText(): string {//método
     return this.paid ? 'Pago' : 'Pedente';
   }
 }
