@@ -40,7 +40,7 @@ export class Entry {
 
   static types = {//propriedade static
     expense: 'Despesa',
-    renevue: 'Receita'
+    revenue: 'Receita'
   };
 
   get paidText(): string {//método
