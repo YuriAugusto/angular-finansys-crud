@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';//permite a manipulação de formulários
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoryFormComponent } from './category-form/category-form.component';
@@ -12,9 +11,8 @@ import { CategoryListComponent } from './category-list/category-list.component';
     CategoryFormComponent
   ],
   imports: [
-    CommonModule,
-    CategoriesRoutingModule,
-    ReactiveFormsModule
+    SharedModule,
+    CategoriesRoutingModule
   ]
 })
 export class CategoriesModule { }
