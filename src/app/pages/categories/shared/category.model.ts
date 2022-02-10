@@ -8,4 +8,8 @@ export class Category extends BaseResourceModel{
   ){
     super();//faz referência o constructor da classe estendida
   }
+
+  static fromJson(jsonData: any): Category {//método static
+    return Object.assign(new Category(), jsonData)//faz o cast e retorna uma instância de Category
+  }
 }

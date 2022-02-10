@@ -11,7 +11,7 @@ export class CategoryService extends BaseResourceService<Category> {
 
   constructor(protected injector: Injector) {// injeto uma a dependência do tipo 'Injector'
     // o construtor da classe BaseResourceService recebe a 'apiPath' e uma instância de 'Injector'
-    super('api/categories', injector);
+    super('api/categories', injector, Category.fromJson);
   }
 
 }

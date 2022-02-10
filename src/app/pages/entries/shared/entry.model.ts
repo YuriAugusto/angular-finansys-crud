@@ -13,13 +13,17 @@ export class Entry extends BaseResourceModel{
     public categoryId?: number,
     public category?: Category
   ){
-    super();//faz referência o constructor da classe estendida
+    super();//faz referência ao construtor da super class
   }
 
   static types = {//propriedade static
     expense: 'Despesa',
     revenue: 'Receita'
   };
+
+  static fromJson(jsonData: any): Entry {//método static
+    return Object.assign(new Entry(), jsonData)//faz o cast e retorna uma instância de Entry
+  }
 
   get paidText(): string {//método
     return this.paid ? 'Pago' : 'Pedente';

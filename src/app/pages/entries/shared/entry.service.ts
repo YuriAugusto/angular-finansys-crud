@@ -12,7 +12,9 @@ import { Entry } from './entry.model';
 export class EntryService extends BaseResourceService<Entry>{
 
   constructor(protected injector: Injector, private categoryService: CategoryService) {
-    super("api/entries", injector);
+    // ao passar o método/funcao por argumento sem '()' a função não é executada, dessa forma
+    // é possível utilizar a funcao dentro da super class 'BaseResourceService'
+    super("api/entries", injector, Entry.fromJson);
   }
 
   create(entry: Entry): Observable<Entry>{
@@ -31,22 +33,6 @@ export class EntryService extends BaseResourceService<Entry>{
         return super.update(entry)//invocação do método genérico 'create()' da super class
       })
     )
-  }
-
-  protected jsonDataToResources(jsonData: any[]): Entry[]{
-    const entries: Entry[] = [];
-
-    jsonData.forEach(element => {
-      const entry: Entry = Object.assign(new Entry(), element);//faz um cast e retorna uma instância do objeto
-      entries.push(entry);
-    });
-
-    return entries;
-  }
-
-  protected jsonDataToResource(jsonData: any): Entry{
-    const entry: Entry = Object.assign(new Entry(), jsonData);
-    return entry;
   }
 
 }
