@@ -113,7 +113,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     if(this.currentAction == 'edit'){
 
       this.route.paramMap.pipe(
-        switchMap(params => this.entryService.getByIdd(+params.get('id')))
+        switchMap(params => this.entryService.getById(+params.get('id')))
       )
       .subscribe(
         (entry) => {
