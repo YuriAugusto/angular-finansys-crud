@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, catchError } from 'rxjs/operators';
 import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
 
 import { CategoryService } from './../../categories/shared/category.service';
@@ -12,27 +12,28 @@ import { Entry } from './entry.model';
 export class EntryService extends BaseResourceService<Entry>{
 
   constructor(protected injector: Injector, private categoryService: CategoryService) {
-    // ao passar o método/funcao por argumento sem '()' a função não é executada, dessa forma
-    // é possível utilizar a funcao dentro da super class 'BaseResourceService'
     super("api/entries", injector, Entry.fromJson);
   }
 
   create(entry: Entry): Observable<Entry>{
-    return this.categoryService.getById(entry.categoryId).pipe(
-      flatMap(category => {
-        entry.category = category;
-        return super.create(entry)//invocação do método genérico 'create()' da super class
-      })
-    )
+    // função da super class como arg e this para referênciar que o contexto dentro do 'this'
+    // da super class deve ser EntryService, ex: '${this.apiPath}' a instrução deve considerar
+    // o que foi passado pela 'EntryService' através do construtor
+    return this.setCategoryAndSendToServer(entry, super.create.bind(this));
   }
 
   update(entry: Entry): Observable<Entry>{
+    return this.setCategoryAndSendToServer(entry, super.update.bind(this));
+  }
+
+  private setCategoryAndSendToServer(entry: Entry, sendFn: any): Observable<Entry>{
     return this.categoryService.getById(entry.categoryId).pipe(
       flatMap(category => {
         entry.category = category;
-        return super.update(entry)//invocação do método genérico 'create()' da super class
-      })
-    )
+        return sendFn(entry)// função recebida por argumento
+      }),
+      catchError(this.handleError)//chama o método de base-resource.service
+    );
   }
 
 }
