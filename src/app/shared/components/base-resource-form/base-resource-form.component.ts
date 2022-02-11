@@ -89,7 +89,6 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     return "Edição";
   }
 
-
   protected createResource(){
     const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
 
