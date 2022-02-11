@@ -3,14 +3,14 @@
   [items]="[{text: 'Categorias', link: '/categories'}, {text: pageTitle}]"
 ></app-bread-crumb>
 
-<div class="row mb-4">
-  <div class="col-md">
-    <h1 class="h2 border-left pl-2"> {{ pageTitle }}</h1>
-  </div>
-  <div class="col-md">
-    <a routerLink="/categories" class="btn btn-light float-right"><< Voltar</a>
-  </div>
-</div>
+<!-- foi necessário usar property bind em '[page-title]' porque ele recebe uma variável 'pageTitle'
+     já os outros (ex:'button-text', 'button-link' e etc) não pois recebem strings -->
+<app-page-header
+  [page-title]="pageTitle"
+  button-text="<< Voltar"
+  button-link="/categories"
+  button-class="btn-light"
+></app-page-header>
 
 <form [formGroup]="resourceForm" (submit)="submitForm()"><!-- a dependência ReactiveFormsModule necessita de um formGroup -->
 
