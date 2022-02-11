@@ -114,6 +114,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   private actionsForSuccess(category: Category){
     toastr.success('Solicitação processada com sucesso!');
 
+    console.log(this.route.snapshot.parent.url[0].path);
+
     // esse método redireciona o usuário para '/categories' depois redireciona novamente para '/categories/:id/edit'
     // o objetivo disso é fazer o componente ser recarregado pois no onInit existem diversas functions essenciais
     // para o funcionamento do componente
