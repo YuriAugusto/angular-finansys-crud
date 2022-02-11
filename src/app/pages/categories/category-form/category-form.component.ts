@@ -16,6 +16,7 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
     super(injector, new Category(), categoryService, Category.fromJson);
   }
 
+  //implementação de método abstrato da superclass
   protected buildResourceForm(){//constrói o formulário
     this.resourceForm = this.formBuilder.group({
       id: [null],
@@ -26,12 +27,12 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
 
   //método sobrescrito da superclass
   protected creationPageTitle(): string{
-    return 'Cadastro de nova Categoria';
+    return 'Cadastro de Nova Categoria';
   }
 
   //método sobrescrito da superclass
   protected editionPageTitle(): string{
     const categoryName = this.resource.name || '...';// se 'this.resource.name' for vazio exibe '...'
-    return `Edição da categoria: ${categoryName}`;
+    return `Edição da Categoria: ${categoryName}`;
   }
 }

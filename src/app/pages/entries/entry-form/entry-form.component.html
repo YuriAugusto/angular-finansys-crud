@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<form [formGroup]="entryForm" (submit)="submitForm()"><!-- a dependência ReactiveFormsModule necessita de um formGroup -->
+<form [formGroup]="resourceForm" (submit)="submitForm()"><!-- a dependência ReactiveFormsModule necessita de um formGroup -->
 
   <div class="card">
     <div class="card-header">
@@ -30,8 +30,8 @@
           <select name="type" id="type" formControlName="type" class="form-control">
             <option *ngFor="let option of typeOptions" [value]="option.value">{{ option.text }}</option>
           </select>
-          <div  class="text-danger" *ngIf="entryForm.get('type').invalid && entryForm.get('type').touched">
-            <div *ngIf="entryForm.get('type').errors.required">campo obrigatório</div>
+          <div  class="text-danger" *ngIf="resourceForm.get('type').invalid && resourceForm.get('type').touched">
+            <div *ngIf="resourceForm.get('type').errors.required">campo obrigatório</div>
           </div>
         </div>
         <!-- name -->
@@ -39,9 +39,9 @@
           <label for="name">Lançamento</label>
           <input type="text" class="form-control" id="name" formControlName="name">
 
-          <div  class="text-danger" *ngIf="entryForm.get('name').invalid && entryForm.get('name').touched">
-            <div *ngIf="entryForm.get('name').errors.required">campo obrigatório</div>
-            <div *ngIf="entryForm.get('name').errors.minlength">deve ter no mínimo 2 caracteres</div>
+          <div  class="text-danger" *ngIf="resourceForm.get('name').invalid && resourceForm.get('name').touched">
+            <div *ngIf="resourceForm.get('name').errors.required">campo obrigatório</div>
+            <div *ngIf="resourceForm.get('name').errors.minlength">deve ter no mínimo 2 caracteres</div>
           </div>
         </div>
         <!-- amount -->
@@ -54,8 +54,8 @@
             <input [imask]="imaskConfig" type="text" class="form-control text-right" id="amount" formControlName="amount">
           </div>
 
-          <div  class="text-danger" *ngIf="entryForm.get('amount').invalid && entryForm.get('amount').touched">
-            <div *ngIf="entryForm.get('amount').errors.required">campo obrigatório</div>
+          <div  class="text-danger" *ngIf="resourceForm.get('amount').invalid && resourceForm.get('amount').touched">
+            <div *ngIf="resourceForm.get('amount').errors.required">campo obrigatório</div>
           </div>
         </div>
         <!-- date -->
@@ -71,8 +71,8 @@
             [showButtonBar]="true">
           </p-calendar>
 
-          <div  class="text-danger" *ngIf="entryForm.get('date').invalid && entryForm.get('date').touched">
-            <div *ngIf="entryForm.get('date').errors.required">campo obrigatório</div>
+          <div  class="text-danger" *ngIf="resourceForm.get('date').invalid && resourceForm.get('date').touched">
+            <div *ngIf="resourceForm.get('date').errors.required">campo obrigatório</div>
           </div>
         </div>
       </div>
@@ -81,14 +81,14 @@
         <div class="form-group col-md-2">
           <label for="paid">Pago</label>
           <div class="btn-group">
-            <!-- a verificação utiliza o entryForm para acessar a propriedade 'paid' e verifica se o valor é true ou false,
+            <!-- a verificação utiliza o resourceForm para acessar a propriedade 'paid' e verifica se o valor é true ou false,
               a condição que for verdadeira vai adicionar a classe 'active' ao elemento -->
-            <label (click)="entryForm.get('paid').setValue(true)" [class.active]="entryForm.get('paid').value == true" class="btn btn-outline-info">Pago</label>
-            <label (click)="entryForm.get('paid').setValue(false)" [class.active]="entryForm.get('paid').value == false" class="btn btn-outline-info">Pendente</label>
+            <label (click)="resourceForm.get('paid').setValue(true)" [class.active]="resourceForm.get('paid').value == true" class="btn btn-outline-info">Pago</label>
+            <label (click)="resourceForm.get('paid').setValue(false)" [class.active]="resourceForm.get('paid').value == false" class="btn btn-outline-info">Pendente</label>
           </div>
 
-          <div  class="text-danger" *ngIf="entryForm.get('paid').invalid && entryForm.get('paid').touched">
-            <div *ngIf="entryForm.get('paid').errors.required">campo obrigatório</div>
+          <div  class="text-danger" *ngIf="resourceForm.get('paid').invalid && resourceForm.get('paid').touched">
+            <div *ngIf="resourceForm.get('paid').errors.required">campo obrigatório</div>
           </div>
         </div>
         <!-- categoryId -->
@@ -97,8 +97,8 @@
           <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-control">
             <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
           </select>
-          <div  class="text-danger" *ngIf="entryForm.get('categoryId').invalid && entryForm.get('categoryId').touched">
-            <div *ngIf="entryForm.get('categoryId').errors.required">campo obrigatório</div>
+          <div  class="text-danger" *ngIf="resourceForm.get('categoryId').invalid && resourceForm.get('categoryId').touched">
+            <div *ngIf="resourceForm.get('categoryId').errors.required">campo obrigatório</div>
           </div>
         </div>
         <!-- description -->
@@ -118,7 +118,7 @@
     </ul>
   </div>
 
-  <!-- o botão será disabled quando 'submittingForm == true' ou 'entryForm.invalid == true, ou seja campos do form vazios' -->
-  <button [disabled]="submittingForm || entryForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar</button>
+  <!-- o botão será disabled quando 'submittingForm == true' ou 'resourceForm.invalid == true, ou seja campos do form vazios' -->
+  <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar</button>
 
 </form>
