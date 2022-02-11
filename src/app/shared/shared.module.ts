@@ -18,6 +18,7 @@ import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.compon
     //módulos compartilhados
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
     //componentes compartilhados
     BreadCrumbComponent
   ]
