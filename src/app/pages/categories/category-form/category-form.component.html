@@ -35,12 +35,9 @@
       </div>
     </div>
   </div>
-  <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
-    <b>Erro no servidor:</b>
-    <ul>
-      <li *ngFor="let error of serverErrorMessages">{{ error }}</li>
-    </ul>
-  </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
   <!-- o botão será disabled quando 'submittingForm == true' ou 'resourceForm.invalid == true, ou seja campos do form vazios' -->
   <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar</button>
 
