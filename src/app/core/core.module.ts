@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -6,13 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { InMemoryDAtaBase } from '../in-memory-database';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [NavbarComponent],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDAtaBase)//intercepta as requisições e chama o backend fake
   ],
@@ -20,7 +23,9 @@ import { InMemoryDAtaBase } from '../in-memory-database';
     //módulos compartilhados
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    //componentes compartilhados
+    NavbarComponent
   ]
 })
 export class CoreModule { }
