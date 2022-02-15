@@ -15,7 +15,7 @@
   <div class="card-body">
     <div class="form-row">
       <div class="form-group col-md-7">
-        <label for="month">Mês</label>
+        <label for="month">Mês</label> <!-- #month é uma template variable -->
         <select #month name="month" id="month" class="form-control">
           <option value="">Selecione um mês</option>
           <option value="1">Janeiro</option>
@@ -43,16 +43,6 @@
           <option value="2018">2018</option>
           <option value="2019">2019</option>
           <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-          <option value="2026">2026</option>
-          <option value="2027">2027</option>
-          <option value="2028">2028</option>
-          <option value="2029">2029</option>
-          <option value="2030">2030</option>
         </select>
       </div>
     </div>
@@ -73,7 +63,7 @@
       TOTAL DE RECEITAS
     </div>
     <div class="card-body">
-      <h3 class="card-title"> 1500</h3>
+      <h3 class="card-title"> {{ revenueTotal }} </h3>
     </div>
   </div>
 
@@ -82,7 +72,7 @@
       TOTAL DE DESPESAS
     </div>
     <div class="card-body">
-      <h3 class="card-title"> 500</h3>
+      <h3 class="card-title"> {{ expenseTotal }} </h3>
     </div>
   </div>
 
@@ -91,7 +81,7 @@
       SALDO
     </div>
     <div class="card-body">
-      <h3 class="card-title"> 1000</h3>
+      <h3 class="card-title"> {{ balance }} </h3>
     </div>
   </div>
 </div>
@@ -100,10 +90,10 @@
 
 <div class="row mt-5 mb-4">
  <div class="col-md-6">
-   GRÁFICO DE RECEITAS
- </div>
+   <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
+  </div>
 
- <div class="col-md-6">
-   GRÁFICO DE DESPESAS
+  <div class="col-md-6">
+   <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
  </div>
 </div>
